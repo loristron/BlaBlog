@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-12 md-6 mx-auto">
+	<div class="card p-3"> 
+		<div class='card-body'>
+			{% if user.is_authenticated %}
+				<center>
+					<div class='card-text'> 
+						Você já está conectado
+					</div>
+					<a class="btn btn-primary" href="/logout" role="button">Logout</a>
+				</center>
+			{% else %}
+				<div class="card-title" style="text-align: center;"> {{page_title}}</div>
+				{% if messages %}
+	   				{% for message in messages %}
+	   					 <div class="alert alert-danger" role="alert">
+ 							 {{message}}
+						</div>	   			 	
+					{% endfor %}
+				{% endif %}
+				<div class='form-group'>
+					<form method="POST" enctype="multipart/form-data"> 
+						{% csrf_token %}
+						{{form.as_p}}
+						<button class='btn btn-primary' type="submit">Enviar</button>
+					</form>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

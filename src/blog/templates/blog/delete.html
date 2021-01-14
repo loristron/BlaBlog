@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<h1> Quer deletar a publicação? </h1>
+	<h3>{{object.postTitle}} </h3>
+	<p>{{object.postContent}} </p>
+
+	<form method="POST"> {% csrf_token %}
+		<button clas="btn btn-danger">Sim, deletar</button>
+	</form>
+
+{% endblock content %}

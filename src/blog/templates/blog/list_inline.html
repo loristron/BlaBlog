@@ -1,0 +1,31 @@
+<div class="col-12 col-md-8 mx-auto ">
+	<div class="card p-3 {% if not object.publish_date %} border-warning mb-3 {% endif %} ">
+		<div class="card-body ">
+			<h5 class="card-title" style="text-align: center;">{{object.postTitle|title}}</h5>
+			{% if object.image %}
+				<a href="{{object.get_absolute_url}}">
+				<img src="{{object.image.url}}" class="card-img-top"></a>
+			{% endif %}
+			<p card="card-text">
+			{% if truncated %}
+				{{object.postContent|linebreaks|truncatewords:30}}
+			{% else %}
+				{{object.postContent|linebreaks}}
+			{% endif %}
+			<p class=" card-text">
+				<i>{{object.user}}</i>
+			</p>
+			{% if not detail %}
+					{% if not object.publish_date %} 
+						Draft 
+					{% endif %}
+					<a href="{{object.get_absolute_url}}"> <button type="button" class="btn btn-primary">Abrir</button></a>
+
+			{% endif %}
+			<div class="card-footer">
+				<small class="text-muted">{{object.publish_date}}</small>
+			</div>	
+			</p>
+		</div>
+	</div>
+</div>
